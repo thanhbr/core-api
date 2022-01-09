@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
-use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -63,5 +62,16 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         return Customer::destroy($id);
+    }
+
+    /**
+     * Search for name.
+     *
+     * @param  str  $name
+     * @return \Illuminate\Http\Response
+     */
+    public function search($name)
+    {
+        return Customer::where('name', 'like', '%'.$name.'%')->get();
     }
 }
